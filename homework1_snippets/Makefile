@@ -1,6 +1,6 @@
 # Program Information.
-PROGRAM_NAME = program_template
-TARGET_NAME = program_template 
+PROGRAM_NAME = homework1_snippets
+TARGET_NAME = homework1_snippets
 
 # Compiler Inforamtion.
 CC = g++
