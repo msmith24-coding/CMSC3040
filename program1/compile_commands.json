@@ -1,0 +1,29 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-O3",
+      "--std=c++20",
+      "-Wpedantic",
+      "-Wall",
+      "-Wextra",
+      "-Wmisleading-indentation",
+      "-Wunused",
+      "-Wuninitialized",
+      "-Wshadow",
+      "-Wconversion",
+      "-Wfloat-equal",
+      "-Wparentheses",
+      "-Wunreachable-code",
+      "-Iinclude",
+      "-o",
+      "obj/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "../program1",
+    "file": "../program1/src/main.cpp",
+    "output": "../program1/obj/main.o"
+  }
+]

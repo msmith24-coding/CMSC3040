@@ -1,15 +1,15 @@
 # Program Information.
 PROGRAM_NAME = program_template
-TARGET_NAME = program_template 
+TARGET_NAME = program_template
 
 # Compiler Inforamtion.
 CC = g++
 
 # CXX Flags are defined here.
 DEBUG_FLAGS = -g
-OPTIMIZATION_FLAGS = -O2
+OPTIMIZATION_FLAGS = -O3
 STANDARD_FLAGS = --std=c++20
-WARNING_FLAGS = -Wall -Wextra -Wpedantic -Wnon-virtual-dtor -Wold-style-cast -Wuninitialized -Winit-self -Wparentheses -Wdangling-else
+WARNING_FLAGS = -Wpedantic -Wall -Wextra -Wmisleading-indentation -Wunused -Wuninitialized -Wshadow -Wconversion -Wfloat-equal -Wparentheses -Wunreachable-code
 CXXFLAGS = $(DEBUG_FLAGS) $(OPTIMIZATION_FLAGS) $(STANDARD_FLAGS) $(WARNING_FLAGS)
 
 # Directories are defined here.
