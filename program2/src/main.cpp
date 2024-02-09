@@ -49,7 +49,7 @@ int main()
             case MainMenuOptions::ADD_GAME: showAddGameMenu(&collection); break;
             case MainMenuOptions::REMOVE_GAME: showRemoveGameMenu(&collection); break;
             case MainMenuOptions::LIST_GAMES_BY_ID: showListGamesById(&collection); break;
-            case MainMenuOptions::LIST_GAMES_BY_TITLE: return 1;
+            case MainMenuOptions::LIST_GAMES_BY_TITLE: showListGamesByTitle(&collection); break;
             case MainMenuOptions::CHANGE_STATUS: showStatusMenu(&collection); break;
             case MainMenuOptions::SHOW_GAME_BY_ID: showGameInfoById(&collection); break;
             case MainMenuOptions::SHOW_GAME_BY_TITLE: showGameInfoByTitle(&collection); break;
@@ -98,7 +98,6 @@ void populateCollection(CSVParser& parser, GameObjectCollection* collection)
         tempObject->setType(parser.getData(row, 2));
         tempObject->setStatus(parser.getData(row, 3));
         collection->addGame(*tempObject);
-        //tempObject->showInfo();
     }
 }
 
@@ -112,7 +111,7 @@ unsigned int showListGamesById(GameObjectCollection* collection)
     
 
     for(unsigned int i = collection->getSize() - 1; i > 0; --i) {
-        std::cout << "Adding: " << collection->getByIndex(i).getGameId() << std::endl;
+        //std::cout << "Adding: " << collection->getByIndex(i).getGameId() << std::endl;
         list.addNumericalElement(collection->getByIndex(i).getGameId());
     }
     
@@ -121,6 +120,27 @@ unsigned int showListGamesById(GameObjectCollection* collection)
     list.sortNumicalList();
 
     list.showNumerical(); 
+
+    return 0;
+}
+
+unsigned int showListGamesByTitle(GameObjectCollection* collection)
+{
+    std::cout << std::endl;
+    std::cout << "Listing all game titles (Alphabetically)" << std::endl;
+
+    LinkedList list = LinkedList();
+
+    for(unsigned int i = collection->getSize() - 1; i > 0; --i) {
+        //std::cout << "Adding: " << collection->getByIndex(i).getGameTitle() << std::endl;
+        list.addStringElement(collection->getByIndex(i).getGameTitle()); 
+    }
+    
+    list.addStringElement(collection->getByIndex(0).getGameTitle());
+
+    list.sortStringList();
+
+    list.showString(); 
 
     return 0;
 }
@@ -150,8 +170,10 @@ unsigned int showAddGameMenu(GameObjectCollection* collection)
     std::getline(std::cin, gameTitle);
    
     std::string gameId;
-    std::cout << "\tEnter a game id > "; 
-    std::getline(std::cin, gameId);
+    while(gameId.size() < 5 || gameId.size() > 5) {
+        std::cout << "\tEnter a 5 digit game id > "; 
+        std::getline(std::cin, gameId);
+    }
 
     std::string gameType;
     std::cout << "\tEnter a game type > ";

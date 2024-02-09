@@ -9,7 +9,13 @@ LinkedList::~LinkedList()
         tempNode = tempNode->next;
         delete this->head;
     }
-    //delete tempNode;
+
+    StringNode* tempStrNode = this->strHead;
+    while(tempStrNode != nullptr) {
+        this->strHead = tempStrNode;
+        tempStrNode = tempStrNode->next;
+        delete this->strHead;
+    }
 }
 
 unsigned int LinkedList::getSize() const
@@ -29,6 +35,18 @@ void LinkedList::addNumericalElement(int element)
     ++this->size;
 }
 
+void LinkedList::addStringElement(const std::string& element)
+{
+    StringNode* tempNode = new StringNode;
+    tempNode->data = element;
+    tempNode->next = this->strHead;
+    this->strHead = tempNode;
+    if(this->strTail == nullptr) {
+        this->strTail = tempNode;
+    }
+    ++this->size;
+}
+
 void LinkedList::showNumerical()
 {
     NumicalNode* currentNode = this->head;
@@ -38,23 +56,30 @@ void LinkedList::showNumerical()
             currentNode = currentNode->next;
         }
     }
-    //delete currentNode;
+}
+
+void LinkedList::showString()
+{
+    StringNode* currentNode = this->strHead;
+    for(unsigned int i = 0; i < this->getSize(); ++i) {
+        std::cout << "\t- " << currentNode->data << std::endl; 
+        if(currentNode->next != nullptr) {
+            currentNode = currentNode->next;
+        }
+    }
 }
 
 void LinkedList::sortNumicalList()
 {
     NumicalNode* currentNode = new NumicalNode;
     NumicalNode* nextNode = new NumicalNode;
-    //NumicalNode* tempNode = new NumicalNode;
 
     currentNode = this->head;
     nextNode = this->head->next;
     
-    std::cout << "-- [Before Sort] --" << std::endl;
-
-    this->showNumerical();
-    
-    std::cout << "-- [Starting Sort] --" << std::endl;
+    //std::cout << "-- [Before Sort] --" << std::endl;
+    //this->showNumerical(); 
+    //std::cout << "-- [Starting Sort] --" << std::endl;
     unsigned int counter = 0;
     while(counter <= 2048) {
         currentNode = this->head;
@@ -91,7 +116,53 @@ void LinkedList::sortNumicalList()
     }
 }
 
+void LinkedList::sortStringList()
+{
+    StringNode* currentNode = new StringNode;
+    StringNode* nextNode = new StringNode;
 
+    currentNode = this->strHead;
+    nextNode = this->strHead->next;
+    
+    //std::cout << "-- [Before Sort] --" << std::endl;
+    //this->showString();
+    //std::cout << "-- [Starting Sort] --" << std::endl;
+    
+    unsigned int counter = 0;
+    while(counter <= 2048) {
+        currentNode = this->strHead;
+        nextNode = this->strHead->next; // <-- Fixes everything
+        
+        for(unsigned int i = 0; i < this->getSize() - 1; ++i) {
+            //std::cout << "[" << i << "] : (" << currentNode->data << " > " << nextNode->data << ") = " << (currentNode->data > nextNode->data) << std::endl; 
+            
+            if(currentNode->data.compare(nextNode->data) > 0) {
+                //tempNode = currentNode;
+                //std::cout << "(tempNode = currentNode) : " << tempNode->data << std::endl;
+            
+                //currentNode = nextNode;
+                //std::cout << "(currentNode = nextNode) : " << currentNode->data << std::endl;
+            
+                std::swap(currentNode->data, nextNode->data);
 
-
+                if(nextNode->next != nullptr) {
+                    nextNode = nextNode->next;
+                    //std::cout << "(nextNode = nextNode->next) : " << nextNode->data << std::endl; 
+                }
+            } else { 
+                if(currentNode->next != nullptr) {
+                    currentNode = currentNode->next;
+                    //std::cout << "new currentNode : " << currentNode->data << std::endl;
+                }
+        
+                if(nextNode->next != nullptr) {
+                    nextNode = nextNode->next;
+                    //std::cout << "new nextNode : " << nextNode->data << std::endl;
+                }
+            }
+            //std::cout << std::endl;
+        }
+        counter++;
+    }
+}
 
