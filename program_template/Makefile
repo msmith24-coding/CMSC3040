@@ -13,7 +13,7 @@ WARNING_FLAGS = -Wpedantic -Wall -Wextra -Wmisleading-indentation -Wunused -Wuni
 CXXFLAGS = $(DEBUG_FLAGS) $(OPTIMIZATION_FLAGS) $(STANDARD_FLAGS) $(WARNING_FLAGS)
 
 # Directories are defined here.
-INCLUDE_DIR = include  
+INCLUDE_DIR = include/  
 
 # Source files that should be compiled are defined here.
 SOURCES = src/main.cpp

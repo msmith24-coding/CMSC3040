@@ -1,0 +1,7 @@
+[
+    {
+        "directory": "/sharedMount/m837752s/CMSC3040/program2/",
+        "file": "src/main.cpp",
+        "command": "g++ -g -O3 --std=c++20 -Wpedantic -Wall -Wextra -Wmisleading-indentation -Wunused -Wuninitialized -Wshadow -Wconversion -Wfloat-equal -Wparentheses -Wunreachable-code obj/main.o -o program2"
+    }
+]
