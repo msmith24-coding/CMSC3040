@@ -50,14 +50,15 @@ void LinkedList::sortNumicalList()
     currentNode = this->head;
     nextNode = this->head->next;
     
-    //std::cout << "-- [Before Sort] --" << std::endl;
+    std::cout << "-- [Before Sort] --" << std::endl;
 
-    //this->showNumerical();
+    this->showNumerical();
     
-    //std::cout << "-- [Starting Sort] --" << std::endl;
+    std::cout << "-- [Starting Sort] --" << std::endl;
     unsigned int counter = 0;
     while(counter <= 2048) {
         currentNode = this->head;
+        nextNode = this->head->next; // <-- Fixes everything
         for(unsigned int i = 0; i < this->getSize() - 1; ++i) {
             //std::cout << "[" << i << "] : (" << currentNode->data << " > " << nextNode->data << ") = " << (currentNode->data > nextNode->data) << std::endl; 
             if(currentNode->data > nextNode->data) {

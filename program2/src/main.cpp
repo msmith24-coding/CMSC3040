@@ -108,6 +108,9 @@ unsigned int showListGamesById(GameObjectCollection* collection)
     std::cout << "Listing all game IDs (Numeriaclly)" << std::endl;
 
     LinkedList list = LinkedList();
+    
+    
+
     for(unsigned int i = collection->getSize() - 1; i > 0; --i) {
         std::cout << "Adding: " << collection->getByIndex(i).getGameId() << std::endl;
         list.addNumericalElement(collection->getByIndex(i).getGameId());
